@@ -38,7 +38,7 @@ const rateLimiter = (req, res, next) => {
 			// Reset jika window waktu sudah berlalu
 			rateLimitStore.set(ip, { windowStart: now, requestCount: 1 });
 			next();
-		} else if (requestCount < 100) {
+		} else if (requestCount < 150) {
 			// Izinkan request jika masih dalam batas
 			rateLimitStore.set(ip, {
 				windowStart,
