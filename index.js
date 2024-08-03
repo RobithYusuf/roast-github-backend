@@ -38,7 +38,7 @@ const rateLimiter = (req, res, next) => {
 			// Reset jika window waktu sudah berlalu
 			rateLimitStore.set(ip, { windowStart: now, requestCount: 1 });
 			next();
-		} else if (requestCount < 150) {
+		} else if (requestCount < 200) {
 			// Izinkan request jika masih dalam batas
 			rateLimitStore.set(ip, {
 				windowStart,
@@ -152,7 +152,7 @@ app.post("/roast", async (req, res) => {
 			readmeContent = readmeResponse.data;
 		}
 
-		let prompt = `berikan roasting singkat dengan sangat kejam dan menyindir menggunakan bahasa gaul untuk profile github berikut : ${username}. dan ini untuk detailnya: "${JSON.stringify(datas)}"`;
+		let prompt = `berikan roasting singkat dengan kejam dan menyindir dalam bahasa gaul untuk profile github berikut : ${username}. Berikut detailnya: "${JSON.stringify(datas)}"`;
 
 		if (datas.location && !datas.location.includes("Indonesia")) {
 			prompt = `give a short and harsh roasting for the following github profile: ${username}. Here are the details: "${JSON.stringify(datas)}"`;
@@ -166,7 +166,7 @@ app.post("/roast", async (req, res) => {
 
 		if (!datas.location || datas.location.includes("Indonesia")) {
 			prompt +=
-				". (berikan response dalam bahasa indonesia dan jangan berikan pujian, saran atau motivasi, berikan saja roasting kejam tapi jangan bahasa hewan)";
+				". (berikan response dalam bahasa indonesia dan jangan berikan pujian atau saran serta jangan berikan kata-kata terlalu kasar)";
 		} else {
 			prompt +=
 				". (provide the response in English and do not provide praise or advice and do not use explicit words)";
@@ -186,7 +186,7 @@ app.post("/roast", async (req, res) => {
 			return res
 				.status(500)
 				.json({
-					error: "Layanan tidak tersedia saat ini. Silakan coba lagi nanti.",
+					error: "Layanan AI tidak tersedia saat ini. Silakan coba lagi nanti.",
 				});
 		}
 		if (error.response && error.response.status === 404) {
