@@ -10,16 +10,14 @@ const {
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const app = express();
-const options = [
-	cors({
-		origin: "*",
-		methods: "*",
-		allowedHeaders: ["Content-Type", "Authorization"],
-		credentials: true,
-	}),
-];
+const corsOptions = {
+	origin: "https://roast-github.deployweb.site",
+	methods: ["POST"],
+	allowedHeaders: ["Content-Type", "Authorization"],
+	credentials: true,
+};
 
-app.use(options);
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 async function fetchGitHubData(username) {
@@ -95,7 +93,7 @@ app.post("/roast", async (req, res) => {
 				followers: profileResponse.data.followers,
 				following: profileResponse.data.following,
 				public_repos: profileResponse.data.public_repos,
-				avatar_url: profileResponse.data.avatar_url, // Tambahkan URL foto profil
+				avatar_url: profileResponse.data.avatar_url,
 				repositories: repoResponse.data
 					.map((repo) => ({
 						name: repo.name,
@@ -137,7 +135,7 @@ app.post("/roast", async (req, res) => {
 
 		res.json({
 			roasting: response.text(),
-			avatar_url: datas.avatar_url, // Sertakan URL foto profil dalam respons
+			avatar_url: datas.avatar_url,
 		});
 	} catch (error) {
 		console.log(error);
@@ -148,7 +146,7 @@ app.post("/roast", async (req, res) => {
 	}
 });
 
-const port = 3001;
-app.listen(process.env.PORT || port, () => {
-	console.log(`Web app listening on port ${port}`);
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+	console.log(`web berjalan di port : ${port}`);
 });
