@@ -38,7 +38,7 @@ const rateLimiter = (req, res, next) => {
 			// Reset jika window waktu sudah berlalu
 			rateLimitStore.set(ip, { windowStart: now, requestCount: 1 });
 			next();
-		} else if (requestCount < 3) {
+		} else if (requestCount < 5) {
 			// Izinkan request jika masih dalam batas
 			rateLimitStore.set(ip, {
 				windowStart,
@@ -69,7 +69,9 @@ async function fetchGitHubData(username) {
 		};
 	}
 
-	let profileResponse, repoResponse, readmeResponse;
+	let profileResponse;
+	let repoResponse;
+	let readmeResponse;
 
 	try {
 		profileResponse = await axios.get(
