@@ -148,5 +148,5 @@ app.post("/roast", async (req, res) => {
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
-	console.log(`Web app listening on port ${port}`);
+	console.log(`Web berjalan di port ${port}`);
 });
