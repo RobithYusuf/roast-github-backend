@@ -166,7 +166,7 @@ app.post("/roast", async (req, res) => {
 
 		if (!datas.location || datas.location.includes("Indonesia")) {
 			prompt +=
-				". (berikan response dalam bahasa indonesia dan jangan berikan pujian atau saran atau motivasi, berikan saja roasting tapi jangan terlalu kasar)";
+				". (berikan response dalam bahasa indonesia dan jangan berikan pujian, saran atau motivasi, berikan saja roasting kejam tapi jangan bahasa hewan)";
 		} else {
 			prompt +=
 				". (provide the response in English and do not provide praise or advice and do not use explicit words)";
