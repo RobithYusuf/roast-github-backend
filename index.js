@@ -11,6 +11,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const app = express();
 const corsOptions = {
+	// ganti bagian ini menjadi all cors agar bisa berjalan lokal
 	origin: "https://roast-github.deployweb.site",
 	methods: ["POST"],
 	allowedHeaders: ["Content-Type", "Authorization"],
