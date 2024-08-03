@@ -186,7 +186,7 @@ app.post("/roast", async (req, res) => {
 			return res
 				.status(500)
 				.json({
-					error: "Layanan AI tidak tersedia saat ini. Silakan coba lagi nanti.",
+					error: "Layanan tidak tersedia saat ini. Silakan coba lagi nanti.",
 				});
 		}
 		if (error.response && error.response.status === 404) {
