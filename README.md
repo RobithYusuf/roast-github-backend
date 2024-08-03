@@ -20,8 +20,8 @@ GitHub Roasting adalah aplikasi web yang menggunakan API GitHub dan Gemini AI un
 
 1. Clone repositori
    ```
-   git clone https://github.com/RobithYusuf/github-roasting.git
-   cd github-roasting
+   git clone https://github.com/RobithYusuf/roast-github-backend.git
+   cd roast-github-backend
    ```
 
 2. Instal dependensi
